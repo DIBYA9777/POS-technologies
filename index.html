@@ -963,4 +963,754 @@
     background: rgba(255,255,255,0.04);
     border: 1px solid rgba(255,255,255,0.08);
     border-radius: 24px;
-    padding: 36p
+    padding: 36px;
+    backdrop-filter: blur(10px);
+  }
+
+  .form-group {
+    margin-bottom: 16px;
+  }
+
+  .form-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #888;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .form-input, .form-textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 12px 16px;
+    color: white;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    outline: none;
+    resize: none;
+  }
+
+  .form-input:focus, .form-textarea:focus {
+    border-color: var(--orange);
+    background: rgba(232,64,28,0.05);
+    box-shadow: 0 0 0 3px rgba(232,64,28,0.1);
+  }
+
+  .form-textarea { height: 100px; }
+
+  .form-submit {
+    width: 100%;
+    background: var(--orange);
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 12px;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .form-submit:hover {
+    background: var(--orange-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(232,64,28,0.4);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #080808;
+    color: #666;
+    text-align: center;
+    padding: 24px;
+    font-size: 0.85rem;
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  footer span { color: var(--orange); }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeSlideLeft {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes float3d {
+    0%, 100% { transform: translateY(0) rotateX(3deg) rotateY(-5deg); }
+    50% { transform: translateY(-20px) rotateX(-3deg) rotateY(5deg); }
+  }
+
+  @keyframes floatBadge {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  @keyframes barGrow {
+    from { width: 0; }
+    to { width: var(--w, 75%); }
+  }
+
+  @keyframes marqueeScroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  @keyframes rotateSlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero-visual { display: none; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; }
+    .solutions-grid { grid-template-columns: 1fr 1fr; }
+    .products-grid { grid-template-columns: repeat(2, 1fr); }
+    .services-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+
+  @media (max-width: 600px) {
+    .solutions-grid, .products-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 20px; flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 3D Background Canvas -->
+<canvas id="bg-canvas"></canvas>
+
+<!-- ── NAV ── -->
+<nav id="navbar">
+  <div class="nav-logo">
+    <div class="nav-logo-icon"></div>
+    <div class="nav-brand">
+      <span>POS</span><span> Technologies</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#solutions">Solutions</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#brands">Partners</a></li>
+    <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <div class="hero-bg-gradient"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Est. 2014 · Odisha, India</div>
+    <h1 class="hero-title">
+      <span class="line1">We Create</span>
+      <span class="line2">Digital Solutions</span>
+      <span class="line3">Barcode • RFID • POS • Retail Technology</span>
+    </h1>
+    <p class="hero-desc">
+      POS Technologies is Odisha's leading Barcode & RFID solution provider — delivering enterprise-grade hardware, software and services since 2014.
+    </p>
+    <div class="hero-buttons">
+      <a href="#solutions" class="btn-primary">Explore Solutions →</a>
+      <a href="#contact" class="btn-secondary">📞 Get in Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">10+</div>
+        <div class="stat-label">Years Expertise</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">500+</div>
+        <div class="stat-label">Clients Served</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">9</div>
+        <div class="stat-label">Industry Solutions</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-card-3d">
+      <div class="hero-main-card">
+        <div class="hmc-top">
+          <div class="hmc-icon-grid">
+            <div class="hmc-icon">🖨️</div>
+            <div class="hmc-icon">📡</div>
+            <div class="hmc-icon">💳</div>
+            <div class="hmc-icon">📦</div>
+            <div class="hmc-icon">🏷️</div>
+            <div class="hmc-icon">🖥️</div>
+          </div>
+        </div>
+        <div class="hmc-bottom">
+          <div class="hmc-title">POS Technology Suite</div>
+          <span class="hmc-tag">Live Dashboard</span>
+          <div class="hmc-bars">
+            <div class="hmc-bar"><div class="hmc-bar-fill" style="--w:88%"></div></div>
+            <div class="hmc-bar"><div class="hmc-bar-fill" style="--w:65%;animation-delay:1.7s"></div></div>
+            <div class="hmc-bar"><div class="hmc-bar-fill" style="--w:92%;animation-delay:1.9s"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="floating-badge badge-1">🏆 Top Rated</div>
+      <div class="floating-badge badge-2">⚡ 24/7 Support</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MARQUEE ── -->
+<div class="marquee-section">
+  <div class="marquee-track" id="marquee1">
+    <span class="marquee-item">Barcode Solutions</span>
+    <span class="marquee-item">RFID Technology</span>
+    <span class="marquee-item">Retail Automation</span>
+    <span class="marquee-item">Touch POS</span>
+    <span class="marquee-item">Visitor Management</span>
+    <span class="marquee-item">Asset Tracking</span>
+    <span class="marquee-item">Healthcare Solutions</span>
+    <span class="marquee-item">Inventory Management</span>
+    <span class="marquee-item">Barcode Solutions</span>
+    <span class="marquee-item">RFID Technology</span>
+    <span class="marquee-item">Retail Automation</span>
+    <span class="marquee-item">Touch POS</span>
+    <span class="marquee-item">Visitor Management</span>
+    <span class="marquee-item">Asset Tracking</span>
+    <span class="marquee-item">Healthcare Solutions</span>
+    <span class="marquee-item">Inventory Management</span>
+  </div>
+</div>
+
+<!-- ── ABOUT ── -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div style="position:relative;width:320px;height:320px;margin:auto;">
+          <div class="about-ring"></div>
+          <div class="about-ring-2"></div>
+          <div class="about-center">
+            <div class="about-center-num">10+</div>
+            <div class="about-center-text">Years of Trust</div>
+          </div>
+          <!-- Orbit dots -->
+          <div class="about-orbit-dot" style="top:10px;left:130px;">📊</div>
+          <div class="about-orbit-dot" style="top:130px;right:-10px;">🔬</div>
+          <div class="about-orbit-dot" style="bottom:10px;left:130px;">🔧</div>
+          <div class="about-orbit-dot" style="top:130px;left:-10px;">🚀</div>
+        </div>
+      </div>
+      <div class="about-text reveal">
+        <div class="section-tag">About Us</div>
+        <h2 class="section-title">Powering Odisha's <span>Digital Backbone</span></h2>
+        <p class="section-desc">
+          Established in 2014, POS Technologies has grown as Odisha's premier Barcode & RFID solution provider. We serve Government, Retail, Healthcare, Logistics, and Industrial sectors with precision digital technologies.
+        </p>
+        <ul>
+          <li>Door to Door Service</li>
+          <li>Trained Technicians</li>
+          <li>Round the Clock Service</li>
+          <li>Updated Technology</li>
+          <li>Authorised Service Partner</li>
+          <li>10+ Years Experience</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SOLUTIONS ── -->
+<section id="solutions">
+  <div class="section-inner">
+    <div style="text-align:center;max-width:600px;margin:0 auto 60px;">
+      <div class="section-tag">What We Do</div>
+      <h2 class="section-title">Industry <span>Solutions</span></h2>
+      <p style="color:#666;font-size:1rem;line-height:1.7;">From retail floors to hospital wards, we deliver precision technology for every sector.</p>
+    </div>
+    <div class="solutions-grid">
+      <div class="sol-card reveal">
+        <div class="sol-icon">📊</div>
+        <div class="sol-title">Barcode Solutions</div>
+        <div class="sol-desc">Complete barcode printing, scanning & label management for all industries.</div>
+        <div class="sol-arrow">→</div>
+      </div>
+      <div class="sol-card reveal">
+        <div class="sol-icon">📡</div>
+        <div class="sol-title">RFID Solutions</div>
+        <div class="sol-desc">EPC Gen 2 RFID tags, readers, and antennas for seamless asset tracking.</div>
+        <div class="sol-arrow">→</div>
+      </div>
+      <div class="sol-card reveal">
+        <div class="sol-icon">🛒</div>
+        <div class="sol-title">Retail Solutions</div>
+        <div class="sol-desc">End-to-end retail automation with POS terminals, displays & payment devices.</div>
+        <div class="sol-arrow">→</div>
+      </div>
+      <div class="sol-card reveal">
+        <div class="sol-icon">👥</div>
+        <div class="sol-title">Visitor Management</div>
+        <div class="sol-desc">Smart visitor tracking & access control for offices, campuses & institutions.</div>
+        <div class="sol-arrow">→</div>
+      </div>
+      <div class="sol-card reveal">
+        <div class="sol-icon">🏫</div>
+        <div class="sol-title">Educational Solutions</div>
+        <div class="sol-desc">Library automation, attendance tracking and student ID management systems.</div>
+        <div class="sol-arrow">→</div>
+      </div>
+      <div class="sol-card reveal">
+        <div class="sol-icon">🚚</div>
+        <div class="sol-title">Logistics Solutions</div>
+        <div class="sol-desc">Supply chain tracking, warehouse management and inventory control systems.</div>
+        <div class="sol-arrow">→</div>
+      </div>
+      <div class="sol-card reveal">
+        <div class="sol-icon">🏭</div>
+        <div class="sol-title">Industrial Solutions</div>
+        <div class="sol-desc">Rugged barcode & RFID solutions for manufacturing and industrial environments.</div>
+        <div class="sol-arrow">→</div>
+      </div>
+      <div class="sol-card reveal">
+        <div class="sol-icon">🏥</div>
+        <div class="sol-title">Healthcare Solutions</div>
+        <div class="sol-desc">Patient tracking, asset management and lab automation for healthcare facilities.</div>
+        <div class="sol-arrow">→</div>
+      </div>
+      <div class="sol-card reveal">
+        <div class="sol-icon">🏨</div>
+        <div class="sol-title">Hospitality Solutions</div>
+        <div class="sol-desc">POS billing, inventory and guest management for hotels and restaurants.</div>
+        <div class="sol-arrow">→</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRODUCTS ── -->
+<section id="products">
+  <div class="section-inner">
+    <div style="text-align:center;max-width:600px;margin:0 auto 60px;">
+      <div class="section-tag">Hardware & Software</div>
+      <h2 class="section-title">Our <span>Products</span></h2>
+      <p style="color:#666;font-size:1rem;line-height:1.7;">Premium hardware from world-class brands — configured, installed, and supported by our certified team.</p>
+    </div>
+    <div class="products-grid">
+      <div class="prod-card reveal">
+        <span class="prod-emoji">🖨️</span>
+        <div class="prod-name">Barcode Printers</div>
+      </div>
+      <div class="prod-card reveal">
+        <span class="prod-emoji">📷</span>
+        <div class="prod-name">Barcode Scanners</div>
+      </div>
+      <div class="prod-card reveal">
+        <span class="prod-emoji">📡</span>
+        <div class="prod-name">RFID Systems</div>
+      </div>
+      <div class="prod-card reveal">
+        <span class="prod-emoji">🧾</span>
+        <div class="prod-name">Thermal Printers</div>
+      </div>
+      <div class="prod-card reveal">
+        <span class="prod-emoji">🖥️</span>
+        <div class="prod-name">Touch POS</div>
+      </div>
+      <div class="prod-card reveal">
+        <span class="prod-emoji">💰</span>
+        <div class="prod-name">Cash Registers</div>
+      </div>
+      <div class="prod-card reveal">
+        <span class="prod-emoji">💳</span>
+        <div class="prod-name">Card Printers</div>
+      </div>
+      <div class="prod-card reveal">
+        <span class="prod-emoji">🏷️</span>
+        <div class="prod-name">POS Consumables</div>
+      </div>
+      <div class="prod-card reveal">
+        <span class="prod-emoji">🔌</span>
+        <div class="prod-name">POS Accessories</div>
+      </div>
+      <div class="prod-card reveal">
+        <span class="prod-emoji">📦</span>
+        <div class="prod-name">Display Racks</div>
+      </div>
+      <div class="prod-card reveal">
+        <span class="prod-emoji">📶</span>
+        <div class="prod-name">Wireless Access Points</div>
+      </div>
+      <div class="prod-card reveal">
+        <span class="prod-emoji">🔒</span>
+        <div class="prod-name">Anti-Theft Systems</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BRANDS ── -->
+<section id="brands">
+  <div class="section-inner" style="padding-top:60px;padding-bottom:60px;">
+    <p class="brands-title">Trusted Brand Partners</p>
+    <div class="brands-track-wrap">
+      <div class="brands-row">
+        <span class="brand-pill">Honeywell</span><span class="brand-pill">Zebra</span><span class="brand-pill">Toshiba</span><span class="brand-pill">POSIFLEX</span><span class="brand-pill">Epson</span><span class="brand-pill">Bixolon</span><span class="brand-pill">Citizen</span><span class="brand-pill">Newland</span><span class="brand-pill">Argox</span><span class="brand-pill">Bradma</span><span class="brand-pill">TSC</span><span class="brand-pill">TVS</span><span class="brand-pill">Retsol</span><span class="brand-pill">Partner</span>
+        <span class="brand-pill">Honeywell</span><span class="brand-pill">Zebra</span><span class="brand-pill">Toshiba</span><span class="brand-pill">POSIFLEX</span><span class="brand-pill">Epson</span><span class="brand-pill">Bixolon</span><span class="brand-pill">Citizen</span><span class="brand-pill">Newland</span><span class="brand-pill">Argox</span><span class="brand-pill">Bradma</span><span class="brand-pill">TSC</span><span class="brand-pill">TVS</span><span class="brand-pill">Retsol</span><span class="brand-pill">Partner</span>
+      </div>
+      <div class="brands-row brands-row-2" style="margin-top:12px;">
+        <span class="brand-pill">Mindeo</span><span class="brand-pill">GoDEX</span><span class="brand-pill">Datalogic</span><span class="brand-pill">Fricouni</span><span class="brand-pill">Essaé</span><span class="brand-pill">Datamax</span><span class="brand-pill">Intermec</span><span class="brand-pill">Unitech</span><span class="brand-pill">Mindeo</span><span class="brand-pill">GoDEX</span><span class="brand-pill">Datalogic</span><span class="brand-pill">Fricouni</span><span class="brand-pill">Essaé</span><span class="brand-pill">Datamax</span><span class="brand-pill">Intermec</span><span class="brand-pill">Unitech</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ── -->
+<section id="services">
+  <div class="section-inner">
+    <div style="text-align:center;max-width:600px;margin:0 auto 60px;">
+      <div class="section-tag">After Sales</div>
+      <h2 class="section-title">Premium <span>Services</span></h2>
+    </div>
+    <div class="services-grid">
+      <div class="svc-card reveal">
+        <div class="svc-num">01</div>
+        <div class="svc-title">🔧 Repair Service</div>
+        <div class="svc-desc">Authorised service partner for warranty and out-of-warranty repairs. Over 10 years of equipment knowledge means our certified technicians can extend the life of your POS hardware through upgrades and repairs — covering All-in-One POS Terminals, Touch Displays, Barcode Scanners, Receipt Printers and more.</div>
+      </div>
+      <div class="svc-card reveal">
+        <div class="svc-num">02</div>
+        <div class="svc-title">📶 Advance Wireless Service</div>
+        <div class="svc-desc">Enterprise-level wireless access-point technology ensuring high security and performance for any LAN environment. Our controllers unify wireless-wired network management with scalable architecture, supporting voice, video, data and multiple RF technologies with seamless roaming and fail-over capabilities.</div>
+      </div>
+      <div class="svc-card reveal">
+        <div class="svc-num">03</div>
+        <div class="svc-title">🔒 Boom Barrier & Turnstile</div>
+        <div class="svc-desc">Continuous duty and intensive duty boom barriers with protection rating IP58. Turnstile components that pass through standard doors and can be packed in broken-down form for transport — perfect for access control in large facilities.</div>
+      </div>
+      <div class="svc-card reveal">
+        <div class="svc-num">04</div>
+        <div class="svc-title">🤝 AMC & Support</div>
+        <div class="svc-desc">Annual Maintenance Contracts with round-the-clock support. Door-to-door service, trained technicians, and updated technology — keeping your critical business systems running at peak performance, always.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div class="contact-left">
+        <div class="section-tag">Get In Touch</div>
+        <h2 class="section-title">Ready to <span>Digitise</span> Your Business?</h2>
+        <p style="color:#aaa;line-height:1.7;margin-bottom:40px;">Our experts are ready to understand your requirements and deliver the right solution. Reach out today.</p>
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div>
+            <div class="contact-info-label">Sales Enquiry</div>
+            <div class="contact-info-val">sales@pos-tec.in</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🛠️</div>
+          <div>
+            <div class="contact-info-label">Service Support</div>
+            <div class="contact-info-val">support@pos-tec.in</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-info-label">Phone</div>
+            <div class="contact-info-val">+91-77520 12101 &nbsp;|&nbsp; 93372 12101</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🌐</div>
+          <div>
+            <div class="contact-info-label">Website</div>
+            <div class="contact-info-val">www.pos-tec.in</div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form reveal">
+        <div style="font-size:1.1rem;font-weight:700;color:white;margin-bottom:24px;">Send Us a Message</div>
+        <div class="form-group">
+          <label class="form-label">Your Name</label>
+          <input type="text" class="form-input" placeholder="e.g. Rajesh Kumar">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email / Phone</label>
+          <input type="text" class="form-input" placeholder="your@email.com or 98XXXXXXXX">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Industry</label>
+          <input type="text" class="form-input" placeholder="e.g. Retail, Healthcare, Logistics…">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message</label>
+          <textarea class="form-textarea" placeholder="Describe your requirement…"></textarea>
+        </div>
+        <button class="form-submit">Send Enquiry →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  © 2024 <span>POS Technologies</span> · We Create Code · www.pos-tec.in · Bhubaneswar, Odisha
+</footer>
+
+<script>
+// ── THREE.JS 3D BACKGROUND ──
+(function(){
+  const canvas = document.getElementById('bg-canvas');
+  const W = () => window.innerWidth;
+  const H = () => window.innerHeight;
+  canvas.width = W(); canvas.height = H();
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if(!gl) return;
+
+  // Simple WebGL particle system
+  const vsSource = `
+    attribute vec3 aPosition;
+    attribute float aSize;
+    attribute vec3 aColor;
+    uniform mat4 uMatrix;
+    uniform float uTime;
+    varying vec3 vColor;
+    varying float vAlpha;
+    void main(){
+      vec3 pos = aPosition;
+      pos.y += sin(uTime * 0.5 + aPosition.x * 2.0) * 0.03;
+      pos.x += cos(uTime * 0.3 + aPosition.z * 2.0) * 0.02;
+      gl_Position = uMatrix * vec4(pos, 1.0);
+      gl_PointSize = aSize * (1.0 / gl_Position.w) * 400.0;
+      vColor = aColor;
+      vAlpha = 0.6 + 0.4 * sin(uTime + aPosition.x * 10.0);
+    }
+  `;
+
+  const fsSource = `
+    precision mediump float;
+    varying vec3 vColor;
+    varying float vAlpha;
+    void main(){
+      vec2 coord = gl_PointCoord - 0.5;
+      float dist = length(coord);
+      if(dist > 0.5) discard;
+      float alpha = (0.5 - dist) * 2.0 * vAlpha;
+      gl_FragColor = vec4(vColor, alpha * 0.7);
+    }
+  `;
+
+  function mkShader(type, src){
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src); gl.compileShader(s);
+    return s;
+  }
+
+  const prog = gl.createProgram();
+  gl.attachShader(prog, mkShader(gl.VERTEX_SHADER, vsSource));
+  gl.attachShader(prog, mkShader(gl.FRAGMENT_SHADER, fsSource));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+
+  const N = 220;
+  const positions = new Float32Array(N * 3);
+  const sizes = new Float32Array(N);
+  const colors = new Float32Array(N * 3);
+
+  // Orange: E8401C → 0.91, 0.25, 0.11
+  // Blue: 1A6AE8 → 0.1, 0.42, 0.91
+  // White: 1, 1, 1
+  const palette = [
+    [0.91, 0.25, 0.11],
+    [0.10, 0.42, 0.91],
+    [1.0,  0.42, 0.20],
+    [0.9,  0.9,  0.95],
+  ];
+
+  for(let i=0;i<N;i++){
+    positions[i*3]   = (Math.random()-0.5)*4;
+    positions[i*3+1] = (Math.random()-0.5)*3;
+    positions[i*3+2] = (Math.random()-0.5)*2 - 1;
+    sizes[i] = 1.5 + Math.random()*3;
+    const c = palette[Math.floor(Math.random()*palette.length)];
+    colors[i*3]=c[0]; colors[i*3+1]=c[1]; colors[i*3+2]=c[2];
+  }
+
+  function mkBuf(data){
+    const b = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, b);
+    gl.bufferData(gl.ARRAY_BUFFER, data, gl.STATIC_DRAW);
+    return b;
+  }
+
+  const pBuf = mkBuf(positions);
+  const sBuf = mkBuf(sizes);
+  const cBuf = mkBuf(colors);
+
+  const aPos   = gl.getAttribLocation(prog, 'aPosition');
+  const aSize  = gl.getAttribLocation(prog, 'aSize');
+  const aColor = gl.getAttribLocation(prog, 'aColor');
+  const uMat   = gl.getUniformLocation(prog, 'uMatrix');
+  const uTime  = gl.getUniformLocation(prog, 'uTime');
+
+  function perspective(fov, aspect, near, far){
+    const f = 1/Math.tan(fov/2), nf = 1/(near-far);
+    return new Float32Array([
+      f/aspect,0,0,0, 0,f,0,0,
+      0,0,(far+near)*nf,-1, 0,0,2*far*near*nf,0
+    ]);
+  }
+
+  function resize(){
+    canvas.width = W(); canvas.height = H();
+    gl.viewport(0,0,W(),H());
+  }
+  window.addEventListener('resize', resize);
+
+  gl.enable(gl.BLEND);
+  gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+
+  // Also draw connecting lines
+  const lineVs = `
+    attribute vec3 aPosition;
+    uniform mat4 uMatrix;
+    void main(){ gl_Position = uMatrix * vec4(aPosition, 1.0); }
+  `;
+  const lineFs = `
+    precision mediump float;
+    void main(){ gl_FragColor = vec4(0.91, 0.35, 0.15, 0.06); }
+  `;
+  const lineProg = gl.createProgram();
+  gl.attachShader(lineProg, mkShader(gl.VERTEX_SHADER, lineVs));
+  gl.attachShader(lineProg, mkShader(gl.FRAGMENT_SHADER, lineFs));
+  gl.linkProgram(lineProg);
+  const lineUMat = gl.getUniformLocation(lineProg, 'uMatrix');
+  const lineAPos = gl.getAttribLocation(lineProg, 'aPosition');
+
+  // Pre-build connections
+  const connThresh = 0.8;
+  const lineVerts = [];
+  for(let i=0;i<N;i++){
+    for(let j=i+1;j<N;j++){
+      const dx = positions[i*3]-positions[j*3];
+      const dy = positions[i*3+1]-positions[j*3+1];
+      const dz = positions[i*3+2]-positions[j*3+2];
+      const dist = Math.sqrt(dx*dx+dy*dy+dz*dz);
+      if(dist < connThresh){
+        lineVerts.push(
+          positions[i*3],positions[i*3+1],positions[i*3+2],
+          positions[j*3],positions[j*3+1],positions[j*3+2]
+        );
+      }
+    }
+  }
+  const lineVertsArr = new Float32Array(lineVerts);
+  const lBuf = mkBuf(lineVertsArr);
+
+  let t = 0;
+  function render(){
+    t += 0.008;
+    gl.clearColor(1,1,1,0);
+    gl.clear(gl.COLOR_BUFFER_BIT);
+
+    const aspect = W()/H();
+    const mat = perspective(1.0, aspect, 0.1, 100);
+    // simple translate Z
+    mat[14] = -3;
+
+    // Draw lines
+    gl.useProgram(lineProg);
+    gl.uniformMatrix4fv(lineUMat, false, mat);
+    gl.bindBuffer(gl.ARRAY_BUFFER, lBuf);
+    gl.vertexAttribPointer(lineAPos, 3, gl.FLOAT, false, 0, 0);
+    gl.enableVertexAttribArray(lineAPos);
+    gl.drawArrays(gl.LINES, 0, lineVertsArr.length/3);
+
+    // Draw particles
+    gl.useProgram(prog);
+    gl.uniformMatrix4fv(uMat, false, mat);
+    gl.uniform1f(uTime, t);
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, pBuf);
+    gl.vertexAttribPointer(aPos, 3, gl.FLOAT, false, 0, 0);
+    gl.enableVertexAttribArray(aPos);
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, sBuf);
+    gl.vertexAttribPointer(aSize, 1, gl.FLOAT, false, 0, 0);
+    gl.enableVertexAttribArray(aSize);
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, cBuf);
+    gl.vertexAttribPointer(aColor, 3, gl.FLOAT, false, 0, 0);
+    gl.enableVertexAttribArray(aColor);
+
+    gl.drawArrays(gl.POINTS, 0, N);
+    requestAnimationFrame(render);
+  }
+  render();
+})();
+
+// ── NAVBAR SCROLL ──
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// ── SCROLL REVEAL ──
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if(e.isIntersecting){
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// ── SMOOTH ANCHOR ──
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if(t) t.scrollIntoView({ behavior:'smooth' });
+  });
+});
+</script>
+</body>
+</html>
