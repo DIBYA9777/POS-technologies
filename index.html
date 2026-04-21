@@ -357,15 +357,16 @@ footer{background:#fff;border-top:1.5px solid rgba(232,64,28,.1);padding:28px 5%
   .sec-inner{padding:60px 4%}
   .sol-grid{grid-template-columns:1fr}
   .svc-grid{grid-template-columns:1fr}
-  /* Flip cards – mobile stacked */
-  .flip-card{height:auto;perspective:none}
-  .flip-card-inner{transform:none!important;transform-style:flat;display:flex;flex-direction:column;gap:10px}
-  .flip-front,.flip-back{position:static;backface-visibility:visible;-webkit-backface-visibility:visible;transform:none!important}
-  .flip-back{border-radius:16px;padding:20px}
-  .svc-flip{height:auto;perspective:none}
-  .svc-flip-inner{transform:none!important;transform-style:flat;display:flex;flex-direction:column;gap:10px}
-  .svc-front,.svc-back{position:static;backface-visibility:visible;-webkit-backface-visibility:visible;transform:none!important}
-  .svc-back{border-radius:18px;padding:22px}
+  /* Flip cards – mobile: show only front, hide back */
+  .flip-card{height:auto;perspective:none;cursor:default}
+  .flip-card-inner{transform:none!important;transform-style:flat;display:block;position:relative}
+  .flip-front{position:relative;transform:none!important;backface-visibility:visible;-webkit-backface-visibility:visible;width:100%;display:flex}
+  .flip-back{display:none!important}
+  /* Service flip – mobile: show only front */
+  .svc-flip{height:auto;perspective:none;cursor:default}
+  .svc-flip-inner{transform:none!important;transform-style:flat;display:block;position:relative}
+  .svc-front{position:relative;transform:none!important;backface-visibility:visible;-webkit-backface-visibility:visible;width:100%;display:flex}
+  .svc-back{display:none!important}
   /* Misc */
   .form-row{grid-template-columns:1fr}
   footer{flex-direction:column;text-align:center;gap:12px}
